@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.EvaluationReportDao">
+
+    <insert id="insert" parameterType="com.entity.EvaluationReport">
+        insert into Evaluation_Report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="statisticalDate != null and statisticalDate != '' ">statistical_Date,</if>
+            <if test="callInId != null   and callInId != ''">call_In_Id,</if>
+            <if test="callInName != null  and callInName != '' ">call_In_Name,</if>
+            <if test="belongToPlace  != null and belongToPlace  != '' ">belong_To_Place ,</if>
+            <if test="city != null and city != '' ">city,</if>
+            <if test="entrance != null and entrance != '' ">entrance,</if>
+            <if test="export != null ">export,</if>
+            <if test="star != null ">star,</if>
+            <if test="navigationMonthNum != null and navigationMonthNum != '' ">navigation_Month_Num,</if>
+            <if test="surveyMonthNum != null ">survey_Month_Num,</if>
+            <if test="replyMonthNum != null and replyMonthNum != '' ">reply_Month_Num,</if>
+            <if test="participationMonthRate != null  ">participation_Month_Rate,</if>
+            <if test="satisfactionMonthScore  != null and satisfactionMonthScore  != '' ">satisfaction_Month_Score ,</if>
+            <if test="satisfactionMonthRate  != null ">satisfaction_Month_Rate ,</if>
+            <if test="serviceMonthScore != null and serviceMonthScore != '' ">service_Month_Score,</if>
+            <if test="serviceMonthRate != null and serviceMonthRate != '' ">service_Month_Rate,</if>
+            <if test="understandMonthNum != null and understandMonthNum != '' ">understand_Month_Num,</if>
+            <if test="hintMonthNum != null and hintMonthNum != '' ">hint_Month_Num,</if>
+            <if test="errorMonthNum != null and errorMonthNum != '' ">error_Month_Num,</if>
+            <if test="answerMonthNum != null   and answerMonthNum != ''">answer_Month_Num,</if>
+            <if test="navigationDayNum != null  ">navigation_Day_Num,</if>
+            <if test="surveyDayNum != null  and surveyDayNum != ''">survey_Day_Num,</if>
+            <if test="replyDayNum != null ">reply_Day_Num,</if>
+            <if test="participationDayRate != null  and participationDayRate != ''">participation_Day_Rate,</if>
+            <if test="satisfactionDayScore != null  and satisfactionDayScore != ''">satisfaction_Day_Score,</if>
+            <if test="satisfactionDayRate != null  and satisfactionDayRate != ''">satisfaction_Day_Rate,</if>
+            <if test="serviceDayScore != null  and serviceDayScore != ''">service_Day_Score,
+            </if>
+            <if test="serviceDayRate != null  and serviceDayRate != ''">service_Day_Rate,</if>
+            <if test="understandDayNum != null  and understandDayNum != ''">understand_Day_Num,</if>
+            <if test="hintDayNum != null  and hintDayNum != ''">hint_Day_Num,</if>
+            <if test="errorDayNum != null  and errorDayNum != ''">error_Day_Num,</if>
+            <if test="answerDayNum != null  and answerDayNum != ''">answer_Day_Num,</if>
+            created_By,
+            created_Time,
+            updated_by,
+            updated_Time
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            replace(uuid(),"-",""),
+            <if test="statisticalDate != null and statisticalDate != '' ">#{statisticalDate},</if>
+            <if test="callInId != null   and callInId != ''">#{callInId},</if>
+            <if test="callInName != null  and callInName != '' ">#{callInName},</if>
+            <if test="belongToPlace  != null and belongToPlace  != '' ">#{belongToPlace} ,</if>
+            <if test="city != null and city != '' ">#{city},</if>
+            <if test="entrance != null and entrance != '' ">#{entrance},</if>
+            <if test="export != null ">#{export},</if>
+            <if test="star != null ">#{star},</if>
+            <if test="navigationMonthNum != null and navigationMonthNum != '' ">#{navigationMonthNum},</if>
+            <if test="surveyMonthNum != null ">#{surveyMonthNum},</if>
+            <if test="replyMonthNum != null and replyMonthNum != '' ">#{replyMonthNum},</if>
+            <if test="participationMonthRate != null  ">#{participationMonthRate},</if>
+            <if test="satisfactionMonthScore  != null and satisfactionMonthScore  != '' ">#{satisfactionMonthScore} ,</if>
+            <if test="satisfactionMonthRate  != null ">#{satisfactionMonthRate} ,</if>
+            <if test="serviceMonthScore != null and serviceMonthScore != '' ">#{serviceMonthScore},</if>
+            <if test="serviceMonthRate != null and serviceMonthRate != '' ">#{serviceMonthRate},</if>
+            <if test="understandMonthNum != null and understandMonthNum != '' ">#{understandMonthNum},</if>
+            <if test="hintMonthNum != null and hintMonthNum != '' ">#{hintMonthNum},</if>
+            <if test="errorMonthNum != null and errorMonthNum != '' ">#{errorMonthNum},</if>
+            <if test="answerMonthNum != null   and answerMonthNum != ''">#{answerMonthNum},</if>
+            <if test="navigationDayNum != null  ">#{navigationDayNum},</if>
+            <if test="surveyDayNum != null  and surveyDayNum != ''">#{surveyDayNum},</if>
+            <if test="replyDayNum != null ">#{replyDayNum},</if>
+            <if test="participationDayRate != null  and participationDayRate != ''">#{participationDayRate},</if>
+            <if test="satisfactionDayScore != null  and satisfactionDayScore != ''">#{satisfactionDayScore},</if>
+            <if test="satisfactionDayRate != null  and satisfactionDayRate != ''">#{satisfactionDayRate},</if>
+            <if test="serviceDayScore != null  and serviceDayScore != ''">#{serviceDayScore},
+            </if>
+            <if test="serviceDayRate != null  and serviceDayRate != ''">#{serviceDayRate},</if>
+            <if test="understandDayNum != null  and understandDayNum != ''">#{understandDayNum},</if>
+            <if test="hintDayNum != null  and hintDayNum != ''">#{hintDayNum},</if>
+            <if test="errorDayNum != null  and errorDayNum != ''">#{errorDayNum},</if>
+            <if test="answerDayNum != null  and answerDayNum != ''">#{answerDayNum},</if>
+            'sys',
+            now(),
+            'sys',
+            now()
+        </trim>
+    </insert>
+
+    <select id="selectCount" resultType="int">
+        select count(1) from Evaluation_Report where  date_format(CREATED_TIME,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d');
+    </select>
+
+    <delete id="delete" parameterType="string">
+       delete from Evaluation_Report where DATE_FORMAT(statistical_date,'%Y-%m-%d')=DATE_FORMAT(#{statisticalDate},'%Y-%m-%d')
+    </delete>
+</mapper>

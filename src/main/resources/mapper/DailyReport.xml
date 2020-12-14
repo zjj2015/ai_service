@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.DailyReportDao">
+
+    <insert id="insert" parameterType="com.entity.DailyReport">
+        insert into Daily_Report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="reportDate != null and reportDate != '' ">report_Date,</if>
+            <if test="province != null   and province != ''">province,</if>
+            <if test="business != null  and business != '' ">business,</if>
+            <if test="arrivalMonthNum  != null and arrivalMonthNum  != '' ">arrival_Month_Num ,</if>
+            <if test="processMonthNum != null and processMonthNum != '' ">process_Month_Num,</if>
+            <if test="handleMonthNum != null and handleMonthNum != '' ">handle_Month_Num,</if>
+            <if test="satisfyMonthNum != null ">satisfy_Month_Num,</if>
+            <if test="satisfyMonthRate != null ">satisfy_Month_Rate,</if>
+            <if test="firstSolutionMonthNum != null and firstSolutionMonthNum != '' ">first_Solution_Month_Num,</if>
+            <if test="noBranchingMonthNum != null ">no_Branching_Month_Num,</if>
+            <if test="firstSolutionMonthRate != null and firstSolutionMonthRate != '' ">first_Solution_Month_Rate,</if>
+            <if test="processTbNum != null  ">process_Tb_Num,</if>
+            <if test="handleTbNum  != null and handleTbNum  != '' ">handle_Tb_Num ,</if>
+            <if test="satisfyTbNum  != null ">satisfy_Tb_Num ,</if>
+            <if test="satisfyTbRate != null and satisfyTbRate != '' ">satisfy_Tb_Rate,</if>
+            <if test="firstSolutionTbNum != null and firstSolutionTbNum != '' ">first_Solution_Tb_Num,</if>
+            <if test="firstSolutionTbRate != null and firstSolutionTbRate != '' ">first_Solution_Tb_Rate,</if>
+            <if test="evaluateMonthNum != null and evaluateMonthNum != '' ">evaluate_Month_Num,</if>
+            <if test="evaluateLastMonthNum != null and evaluateLastMonthNum != '' ">evaluate_Last_Month_Num,</if>
+            <if test="arrivalDayNum != null   and arrivalDayNum != ''">arrival_Day_Num,</if>
+            <if test="processDayNum != null  ">process_Day_Num,</if>
+            <if test="handleDayNum != null  and handleDayNum != ''">handle_Day_Num,</if>
+            <if test="evaluateDayNum != null ">evaluate_Day_Num,</if>
+            <if test="satisfyDayNum != null  and satisfyDayNum != ''">satisfy_Day_Num,</if>
+            <if test="satisfyDayRate != null  and satisfyDayRate != ''">satisfy_Day_Rate,</if>
+            <if test="firstSolutionDayNum != null  and firstSolutionDayNum != ''">first_Solution_Day_Num,</if>
+            <if test="noBranchingDayNum != null  and noBranchingDayNum != ''">no_Branching_Day_Num,
+            </if>
+            <if test="firstSolutionDayRate != null  and firstSolutionDayRate != ''">first_Solution_Day_Rate,</if>
+            created_By,
+            created_Time,
+            updated_by,
+            updated_Time
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            replace(uuid(),"-",""),
+            <if test="reportDate != null and reportDate != '' ">#{reportDate},</if>
+            <if test="province != null   and province != ''">#{province},</if>
+            <if test="business != null  and business != '' ">#{business},</if>
+            <if test="arrivalMonthNum  != null and arrivalMonthNum  != '' ">#{arrivalMonthNum} ,</if>
+            <if test="processMonthNum != null and processMonthNum != '' ">#{processMonthNum},</if>
+            <if test="handleMonthNum != null and handleMonthNum != '' ">#{handleMonthNum},</if>
+            <if test="satisfyMonthNum != null ">#{satisfyMonthNum},</if>
+            <if test="satisfyMonthRate != null ">#{satisfyMonthRate},</if>
+            <if test="firstSolutionMonthNum != null and firstSolutionMonthNum != '' ">#{firstSolutionMonthNum},</if>
+            <if test="noBranchingMonthNum != null ">#{noBranchingMonthNum},</if>
+            <if test="firstSolutionMonthRate != null and firstSolutionMonthRate != '' ">#{firstSolutionMonthRate},</if>
+            <if test="processTbNum != null  ">#{processTbNum},</if>
+            <if test="handleTbNum  != null and handleTbNum  != '' ">#{handleTbNum} ,</if>
+            <if test="satisfyTbNum  != null ">#{satisfyTbNum} ,</if>
+            <if test="satisfyTbRate != null and satisfyTbRate != '' ">#{satisfyTbRate},</if>
+            <if test="firstSolutionTbNum != null and firstSolutionTbNum != '' ">#{firstSolutionTbNum},</if>
+            <if test="firstSolutionTbRate != null and firstSolutionTbRate != '' ">#{firstSolutionTbRate},</if>
+            <if test="evaluateMonthNum != null and evaluateMonthNum != '' ">#{evaluateMonthNum},</if>
+            <if test="evaluateLastMonthNum != null and evaluateLastMonthNum != '' ">#{evaluateLastMonthNum},</if>
+            <if test="arrivalDayNum != null   and arrivalDayNum != ''">#{arrivalDayNum},</if>
+            <if test="processDayNum != null  ">#{processDayNum},</if>
+            <if test="handleDayNum != null  and handleDayNum != ''">#{handleDayNum},</if>
+            <if test="evaluateDayNum != null ">#{evaluateDayNum},</if>
+            <if test="satisfyDayNum != null  and satisfyDayNum != ''">#{satisfyDayNum},</if>
+            <if test="satisfyDayRate != null  and satisfyDayRate != ''">#{satisfyDayRate},</if>
+            <if test="firstSolutionDayNum != null  and firstSolutionDayNum != ''">#{firstSolutionDayNum},</if>
+            <if test="noBranchingDayNum != null  and noBranchingDayNum != ''">#{noBranchingDayNum},
+            </if>
+            <if test="firstSolutionDayRate != null  and firstSolutionDayRate != ''">#{firstSolutionDayRate},</if>
+            'sys',
+            now(),
+            'sys',
+            now()
+        </trim>
+    </insert>
+
+    <select id="selectCount" resultType="int">
+        select count(1) from Daily_Report where  date_format(CREATED_TIME,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d');
+    </select>
+
+    <delete id="delete" parameterType="string">
+       delete from Daily_Report where DATE_FORMAT(report_date,'%Y-%m-%d')=DATE_FORMAT(#{reportDate},'%Y-%m-%d')
+    </delete>
+</mapper>

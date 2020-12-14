@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.TaskMarkDao">
+
+    <insert id="insert" parameterType="com.entity.EvaluationReport">
+        insert into TASK_MARK
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="uploadTime != null and uploadTime != '' ">upload_Time,</if>
+            <if test="uploadNum != null   and uploadNum != ''">upload_Num,</if>
+            <if test="uploadFileName != null   and uploadFileName != ''">upload_file_name,</if>
+            created_By,
+            created_Time,
+            updated_by,
+            updated_Time
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="uploadTime != null and uploadTime != '' ">#{uploadTime},</if>
+            <if test="uploadNum != null   and uploadNum != ''">#{uploadNum},</if>
+            <if test="uploadFileName != null   and uploadFileName != ''">#{uploadFileName},</if>
+            'sys',
+            now(),
+            'sys',
+            now()
+        </trim>
+    </insert>
+
+    <select id="selectLastUploadTime" resultType="string">
+        select max(upload_time) from task_mark;
+    </select>
+    
+    <update id="callYydhStatis" parameterType="string" statementType="CALLABLE">
+        call statis_yydh_update(#{dateStr})
+    </update>
+</mapper>

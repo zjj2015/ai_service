@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.StatisReportDao">
+
+    <insert id="insert" parameterType="com.entity.StatisReport">
+        insert into statis_Report
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            id,
+            <if test="statisDate != null and statisDate != '' ">statis_Date,</if>
+            <if test="centerName != null   and centerName != ''">center_Name,</if>
+            <if test="areaName != null  and areaName != '' ">area_Name,</if>
+            <if test="userStar  != null and userStar  != '' ">user_Star ,</if>
+            <if test="callNum != null and callNum != '' ">call_Num,</if>
+            <if test="custNum != null and custNum != '' ">cust_Num,</if>
+            created_By,
+            created_Time,
+            updated_by,
+            updated_Time
+
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            replace(uuid(),"-",""),
+            <if test="statisDate != null and statisDate != '' ">#{statisDate},</if>
+            <if test="centerName != null   and centerName != ''">#{centerName},</if>
+            <if test="areaName != null  and areaName != '' ">#{areaName},</if>
+            <if test="userStar  != null and userStar  != '' ">#{userStar} ,</if>
+            <if test="callNum != null and callNum != '' ">#{callNum},</if>
+            <if test="custNum != null and custNum != '' ">#{custNum},</if>
+            'sys',
+            now(),
+            'sys',
+            now()
+        </trim>
+    </insert>
+
+    <insert id="insertByMap" parameterType="java.util.Map">
+        insert into statis_Report(
+            id,
+            created_By,
+            created_Time,
+            updated_by,
+            updated_Time,
+                <foreach collection="columnMap" item="value" index="key" separator=",">
+                    ${key}
+                </foreach>
+            )values(
+            replace(uuid(),"-",""),
+            'sys',
+            now(),
+            'sys',
+            now(),
+            <foreach collection="columnMap" item="value" index="key" separator=",">
+                #{value}
+            </foreach>
+        )
+    </insert>
+
+
+    <select id="selectCount" resultType="int">
+        select count(1) from statis_Report where  date_format(CREATED_TIME,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d');
+    </select>
+
+    <delete id="delete" parameterType="string">
+       delete from statis_Report where DATE_FORMAT(statis_date,'%Y-%m-%d')=DATE_FORMAT(#{statisDate},'%Y-%m-%d')
+    </delete>
+</mapper>

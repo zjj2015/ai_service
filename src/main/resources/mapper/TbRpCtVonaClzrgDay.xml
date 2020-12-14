@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.dao.TbRpCtVonaClzrgDayDao">
+
+    <insert id="insertByMap" parameterType="java.util.Map">
+        insert into tb_rp_ct_vona_clzrg_day(
+            created_By,
+            created_Time,
+            updated_by,
+            updated_Time,
+                <foreach collection="columnMap" item="value" index="key" separator=",">
+                    ${key}
+                </foreach>
+            )values(
+            'sys',
+            now(),
+            'sys',
+            now(),
+            <foreach collection="columnMap" item="value" index="key" separator=",">
+                #{value}
+            </foreach>
+        )
+    </insert>
+
+    <select id="selectCount" resultType="int">
+        select count(1) from tb_rp_ct_vona_clzrg_day where  date_format(CREATED_TIME,'%Y-%m-%d')=date_format(now(),'%Y-%m-%d');
+    </select>
+
+    <delete id="delete" parameterType="string">
+        delete from tb_rp_ct_vona_clzrg_day where DATE_FORMAT(statis_date,'%Y-%m-%d')=DATE_FORMAT(#{statisDate},'%Y-%m-%d')
+    </delete>
+</mapper>
